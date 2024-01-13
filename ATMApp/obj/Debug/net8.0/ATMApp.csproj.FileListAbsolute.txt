@@ -2,3 +2,14 @@ E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.GeneratedMSBuildEditorConfig.edi
 E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.AssemblyInfoInputs.cache
 E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.AssemblyInfo.cs
 E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.csproj.CoreCompileInputs.cache
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.sourcelink.json
+E:\a\a.c#\ATMApp\ATMApp\bin\Debug\net8.0\ATMApp.exe
+E:\a\a.c#\ATMApp\ATMApp\bin\Debug\net8.0\ATMApp.deps.json
+E:\a\a.c#\ATMApp\ATMApp\bin\Debug\net8.0\ATMApp.runtimeconfig.json
+E:\a\a.c#\ATMApp\ATMApp\bin\Debug\net8.0\ATMApp.dll
+E:\a\a.c#\ATMApp\ATMApp\bin\Debug\net8.0\ATMApp.pdb
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.dll
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\refint\ATMApp.dll
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.pdb
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.genruntimeconfig.cache
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ref\ATMApp.dll

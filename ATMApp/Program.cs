@@ -12,22 +12,25 @@ namespace AtmApp
         private static readonly string URL_FILE = "./etc/trans_account_table.txt";
         public static FileService fileService = new FileService();
         public List<BankAccount> bankAccounts = fileService.readFile(URL_FILE);
+
         private static void Main(string[] args)
         {
             AtmBE atmBE = new AtmBE();
             BankAccountValid baValid = new BankAccountValid();
+            BankAccount newBATrans = null;
 
             Console.WriteLine("Enter the card number : ");
             string cardNo = Console.ReadLine();
 
             if (!baValid.validCardNums(cardNo))
             {
-                Console.WriteLine("The card no : " + cardNo + "is the wrong fomat.");
+                Console.WriteLine("The card no : " + cardNo + " is the wrong fomat.");
             }
+
             Console.WriteLine("Enter the password : ");
             string password = Console.ReadLine();
 
-            if (password != null)
+            if (password == null)
             {
                 Console.WriteLine("The password isn't epmty");
             }
@@ -42,13 +45,12 @@ namespace AtmApp
                 Console.WriteLine("|======================================================================================|");
                 Console.WriteLine("Please choose the right function : ");
                 int choice = int.Parse(Console.ReadLine());
-                BankAccount newBATrans = new BankAccount();
                 switch (choice)
                 {
                     case 1:
                         {
                             double withdraw;
-                            Console.WriteLine("|=========================================WITHDRAW=====================================|");
+                            Console.WriteLine("=========================================WITHDRAW======================================|");
                             Console.WriteLine("| 1. 500000 VNĐ.                                                                       |");
                             Console.WriteLine("| 2. 1000000 VNĐ.                                                                      |");
                             Console.WriteLine("| 3. 1500000 VNĐ.                                                                      |");
@@ -58,17 +60,21 @@ namespace AtmApp
                             Console.WriteLine("|======================================================================================|");
                             Console.WriteLine("Please choose the right function : ");
                             int choice1 = int.Parse(Console.ReadLine());
+                            newBATrans = new BankAccount
+                            {
+                                Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
+                                CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
+                                Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
+                                Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].Amount,
+                                DateTrans = DateTime.Now
+                            };
                             switch (choice1)
                             {
                                 case 1:
                                     withdraw = 500000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
                                         Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw),
-                                        DateTrans = DateTime.Now
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -77,11 +83,7 @@ namespace AtmApp
                                     withdraw = 1000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw),
-                                        DateTrans = DateTime.Now
+                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw)
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -90,11 +92,7 @@ namespace AtmApp
                                     withdraw = 15000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
                                         Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw),
-                                        DateTrans = DateTime.Now
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -103,11 +101,7 @@ namespace AtmApp
                                     withdraw = 2000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
                                         Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw),
-                                        DateTrans = DateTime.Now
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -118,11 +112,7 @@ namespace AtmApp
                                     {
                                         newBATrans = new BankAccount
                                         {
-                                            Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                            CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                            Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
                                             Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(withdraw),
-                                            DateTrans = DateTime.Now
                                         };
                                         newBATrans.OutputInfoTrans();
                                         fileService.insertToFile(newBATrans, URL_FILE);
@@ -160,11 +150,7 @@ namespace AtmApp
                                     deposit = 500000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit),
-                                        DateTrans = DateTime.Now
+                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit)
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -173,11 +159,7 @@ namespace AtmApp
                                     deposit = 1000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit),
-                                        DateTrans = DateTime.Now
+                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit)
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -186,11 +168,7 @@ namespace AtmApp
                                     deposit = 15000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(deposit),
-                                        DateTrans = DateTime.Now
+                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(deposit)
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -199,11 +177,7 @@ namespace AtmApp
                                     deposit = 2000000;
                                     newBATrans = new BankAccount
                                     {
-                                        Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                        CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                        Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(deposit),
-                                        DateTrans = DateTime.Now
+                                        Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].withdraw(deposit)
                                     };
                                     newBATrans.OutputInfoTrans();
                                     fileService.insertToFile(newBATrans, URL_FILE);
@@ -214,11 +188,7 @@ namespace AtmApp
                                     {
                                         newBATrans = new BankAccount
                                         {
-                                            Name = atmBE.getListAccByCardNo(cardNo)[lastTrans].Name,
-                                            CardNo = atmBE.getListAccByCardNo(cardNo)[lastTrans].CardNo,
-                                            Password = atmBE.getListAccByCardNo(cardNo)[lastTrans].Password,
-                                            Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit),
-                                            DateTrans = DateTime.Now
+                                            Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].deposit(deposit)
                                         };
                                         newBATrans.OutputInfoTrans();
                                         fileService.insertToFile(newBATrans, URL_FILE);
