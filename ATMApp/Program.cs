@@ -9,7 +9,7 @@ namespace AtmApp
     public class Program
     {
         private static readonly double MIN_BLANCE = 50000;
-        private static readonly string URL_FILE = "./etc/trans_account_table.txt";
+        private static readonly string URL_FILE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "etc/trans_account_table.txt");
         public static FileService fileService = new FileService();
         public List<BankAccount> bankAccounts = fileService.readFile(URL_FILE);
 
