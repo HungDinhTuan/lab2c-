@@ -65,13 +65,26 @@ namespace ATMApp
             Console.WriteLine("The date time transaction      : " + DateTrans);
         }
 
-        public double Deposit(double depositNum)
+        public double deposit(double depositNum)
         {
+            AtmBE atmBE = new AtmBE();
+            int lastTrans = atmBE.getListAccByCardNo(CardNo).Count;
+            Amount = atmBE.getListAccByCardNo(cardNo)[lastTrans].Amount + depositNum; 
             return Amount;
         }
 
-        public double Wihdraw(double withdrawNum)
+        public double withdraw(double withdrawNum)
         {
+            AtmBE atmBE = new AtmBE();
+            int lastTrans = atmBE.getListAccByCardNo(CardNo).Count;
+            if (atmBE.getListAccByCardNo(CardNo)[lastTrans].Amount + withdrawNum * (1 + FEE_WITHDRAW) < 500000)
+            {
+                Console.WriteLine("Not enough money, card no : " + CardNo +
+                    ", balance : " + Amount + ", with draw : " + withdrawNum +
+                    ", time stamp : " + DateTime.Now);
+                return -999999999999;
+            }
+            Amount = atmBE.getListAccByCardNo(CardNo)[lastTrans].Amount - withdrawNum * (1 + FEE_WITHDRAW);
             return Amount;
         }
     }
