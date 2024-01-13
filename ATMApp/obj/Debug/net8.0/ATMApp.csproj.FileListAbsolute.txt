@@ -1,0 +1,4 @@
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.AssemblyInfoInputs.cache
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.AssemblyInfo.cs
+E:\a\a.c#\ATMApp\ATMApp\obj\Debug\net8.0\ATMApp.csproj.CoreCompileInputs.cache
